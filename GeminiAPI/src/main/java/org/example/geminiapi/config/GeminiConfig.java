@@ -1,5 +1,6 @@
 package org.example.geminiapi.config;
 
+import lombok.Data;
 import org.example.geminiapi.bean.GeminiClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,6 +15,7 @@ import java.net.URL;
 
 @Configuration
 @ConfigurationProperties(prefix = "gemini")
+@Data
 public class GeminiConfig {
 
     private String apiKey;
@@ -36,21 +38,4 @@ public class GeminiConfig {
         }
         return new GeminiClient(url,httpURLConnection);
     }
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
-    }
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-
 }
