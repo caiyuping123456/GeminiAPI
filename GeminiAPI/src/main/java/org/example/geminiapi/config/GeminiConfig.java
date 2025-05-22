@@ -38,4 +38,6 @@ public class GeminiConfig {
         }
         return new GeminiClient(url,httpURLConnection);
     }
+
+
 }
