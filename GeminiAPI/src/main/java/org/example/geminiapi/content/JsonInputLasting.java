@@ -1,9 +1,11 @@
 package org.example.geminiapi.content;
 
 
+import org.example.geminiapi.config.GenerationConfig;
+
 public class JsonInputLasting {
 
-    public static String systemInstructionChatJsonInput(String systemInstruction,String msg){
+    public static String systemInstructionChatJsonInput(String systemInstruction,String msg,GenerationConfig generationConfig){
         return String.format(
                 "{\n" +
                         "    \"system_instruction\": {\n" +
@@ -21,10 +23,11 @@ public class JsonInputLasting {
                         "          }\n" +
                         "        ]\n" +
                         "      }\n" +
-                        "    ]\n" +
+                        "    ]\n"
+                        + ","+generationConfigJson(generationConfig) +
                         "  }", systemInstruction,msg);
     }
-    public static String chat(String msg){
+    public static String chat(String msg,GenerationConfig generationConfig){
         return String.format(
                 "{"
                         + "\"contents\":["
@@ -34,7 +37,21 @@ public class JsonInputLasting {
                         + "    ]"
                         + "  }"
                         + "]"
+                        + ","+generationConfigJson(generationConfig)
                         + "}", msg);
+    }
+    public  static String generationConfigJson(GenerationConfig generationConfig){
+        String string =String.join("\",\"", generationConfig.getStopSequences());
+        return String.format("\"generationConfig\": {\n" +
+                "      \"stopSequences\": [\n" +
+                "        \"%s\"\n" +
+                "      ],\n" +
+                "      \"temperature\": %f,\n" +
+                "      \"maxOutputTokens\": %d,\n" +
+                "      \"topP\": %f,\n" +
+                "      \"topK\": %d\n" +
+                "    }", string,generationConfig.getTemperature(),generationConfig.getMaxOutputTokens()
+        ,generationConfig.getTopP(),generationConfig.getTopK());
     }
 
 }

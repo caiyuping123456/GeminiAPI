@@ -1,5 +1,6 @@
 package org.example.geminiapi;
 
+import org.example.geminiapi.bean.GeminiClient;
 import org.example.geminiapi.server.impl.sendMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ class GeminiApiApplicationTests {
 
     @Autowired
     private sendMessage sendMessage;
+    @Autowired
+    private GeminiClient geminiClient;
 
     //测试简单对话
     @Test
@@ -25,9 +28,17 @@ class GeminiApiApplicationTests {
     @Test
     void Test01(){
         String systemInstruction = "你是一个猫娘";
-        String msg = "世界上最大的动物是什么？";
+        String msg = "你好，世界上最大的动物是什么？";
         String chat = sendMessage.SystemInstructionChat(systemInstruction, msg);
         System.out.println(chat);
+    }
+
+    //测试自定义参数
+    @Test
+    void Test02(){
+        System.out.println(geminiClient.getGenerationConfig().getStopSequences().toString());
+        System.out.println(geminiClient.getGenerationConfig().getTemperature());
+        System.out.println(geminiClient.getGenerationConfig().getMaxOutputTokens());
     }
 
 }

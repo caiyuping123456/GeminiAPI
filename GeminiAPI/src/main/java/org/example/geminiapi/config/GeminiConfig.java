@@ -20,6 +20,7 @@ public class GeminiConfig {
 
     private String apiKey;
     private String baseUrl;
+    private GenerationConfig generationConfig = new GenerationConfig();
 
     @Bean
     public GeminiClient geminiClien(){
@@ -36,7 +37,7 @@ public class GeminiConfig {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return new GeminiClient(url,httpURLConnection);
+        return new GeminiClient(url,httpURLConnection,generationConfig);
     }
 
 

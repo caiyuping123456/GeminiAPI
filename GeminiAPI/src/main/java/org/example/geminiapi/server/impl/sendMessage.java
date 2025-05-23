@@ -22,7 +22,7 @@ public class sendMessage implements Gemini {
 
     //基本文本回复
     public String Chat(String msg){
-        String jsonInput = JsonInputLasting.chat(msg);
+        String jsonInput = JsonInputLasting.chat(msg,geminiClient.getGenerationConfig());
         HttpURLConnection conn = geminiClient.getHttpURLConnection();
         // Send request（将要问的交给ai）
         SendAndRead.Send(conn,jsonInput);
@@ -34,7 +34,7 @@ public class sendMessage implements Gemini {
 
     //系统指令引导回复
     public String SystemInstructionChat(String systemInstruction,String msg){
-        String jsonInput = JsonInputLasting.systemInstructionChatJsonInput(systemInstruction, msg);
+        String jsonInput = JsonInputLasting.systemInstructionChatJsonInput(systemInstruction, msg,geminiClient.getGenerationConfig());
         HttpURLConnection conn = geminiClient.getHttpURLConnection();
         // Send request（将要问的交给ai）
         SendAndRead.Send(conn,jsonInput);
