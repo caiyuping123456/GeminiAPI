@@ -54,4 +54,25 @@ public class JsonInputLasting {
         ,generationConfig.getTopP(),generationConfig.getTopK());
     }
 
+    public static String multimodalInputJson(String msg,GenerationConfig generationConfig,String base64Image){
+        return String.format("{\n" +
+                "          \"contents\": [\n" +
+                "            {\n" +
+                "              \"parts\": [\n" +
+                "                {\n" +
+                "                  \"text\": \"%s\"\n" +
+                "                },\n" +
+                "                {\n" +
+                "                  \"inline_data\": {\n" +
+                "                    \"mime_type\": \"image/jpeg\",\n" +
+                "                    \"data\": \"%s\"\n" +
+                "                  }\n" +
+                "                }\n" +
+                "              ]\n" +
+                "            }\n" +
+                "          ],\n" +
+                        generationConfigJson(generationConfig) +
+                "        }", msg, base64Image);
+    }
+
 }

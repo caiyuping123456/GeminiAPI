@@ -41,4 +41,14 @@ class GeminiApiApplicationTests {
         System.out.println(geminiClient.getGenerationConfig().getMaxOutputTokens());
     }
 
+//    测试多模态输入
+    @Test
+    void Test03(){
+        String msg = "这个是什么";
+        String imagePath = "E:\\javaclass\\SpringAI\\GeminiAPI\\src\\main\\resources\\static\\image\\1.jpg";
+        String chat = sendMessage.multimodalInput(msg, imagePath);
+        System.out.println(chat);
+    }
+
+
 }
