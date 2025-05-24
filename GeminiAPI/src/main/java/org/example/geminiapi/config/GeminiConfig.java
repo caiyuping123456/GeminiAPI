@@ -25,9 +25,11 @@ public class GeminiConfig {
     @Bean
     public GeminiClient geminiClien(){
         URL url = null;
+        URL streamUrl = null;
         HttpURLConnection httpURLConnection = null;
         try {
-            url = new URL(baseUrl+ "?key=" + apiKey);
+            url = new URL(baseUrl+ ":generateContent?key=" + apiKey);
+            streamUrl = new URL(baseUrl+":streamGenerateContent?alt=sse&key="+apiKey);
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
@@ -37,7 +39,7 @@ public class GeminiConfig {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return new GeminiClient(url,httpURLConnection,generationConfig);
+        return new GeminiClient(url,httpURLConnection,generationConfig,streamUrl);
     }
 
 

@@ -50,5 +50,11 @@ class GeminiApiApplicationTests {
         System.out.println(chat);
     }
 
+    @Test
+    void Test04(){
+        String msg = "介绍一下北京大学";
+        sendMessage.streamInput(msg);
+    }
+
 
 }

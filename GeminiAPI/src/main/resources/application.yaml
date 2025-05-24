@@ -1,15 +1,15 @@
 gemini:
   api-key: AIzaSyDYiievH-xF8Fr4gAZ8RFdWvyiIq900Q0Q
-  base-url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
+  base-url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash
 
 ##  相关参数选择这里是默认，你需要可以从官网文档参考
-#  generationConfig:
-#    #设置违禁词(这里的提示词不要超过16个)
+  generationConfig:
+#    #设置违禁词(这里的违禁词不要超过16个)
 #    stopSequences:
 #      - 你好
 ##    #随机度设置
 #    temperature: 0.1
-#    maxOutputTokens: 800
+    maxOutputTokens: 8000
 #    topP:
 #    topK:
 #

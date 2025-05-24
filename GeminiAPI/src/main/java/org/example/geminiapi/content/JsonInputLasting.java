@@ -75,4 +75,18 @@ public class JsonInputLasting {
                 "        }", msg, base64Image);
     }
 
+    public static String streamInputJson(String msg,GenerationConfig generationConfig){
+        return String.format("{\n" +
+                "    \"contents\": [\n" +
+                "      {\n" +
+                "        \"parts\": [\n" +
+                "          {\n" +
+                "            \"text\": \"%s\"\n" +
+                "          }\n" +
+                "        ]\n" +
+                "      }\n" +
+                "    ]\n" +
+                "  }", msg);
+    }
+
 }
